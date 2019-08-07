@@ -13,6 +13,13 @@ else()
     set(CMAKE_C_STANDARD 99)
 endif()
 
+option(STATIC_TTYD "build static ttyd" OFF)
+if(STATIC_TTYD)
+    set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+    set(CMAKE_EXE_LINKER_FLAGS "-static")
+else()
+endif(STATIC_TTYD)
+
 set(LIBWEBSOCKETS_MIN_VERSION 1.7.0)
 set(SOURCE_FILES src/server.c src/http.c src/protocol.c src/utils.c)
 
