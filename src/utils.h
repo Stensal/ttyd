@@ -19,15 +19,15 @@ endswith(const char *str, const char *suffix);
 
 // Get human readable signal string
 int
-get_sig_name(int sig, char *buf);
+get_sig_name(int sig, char *buf, size_t len);
 
 // Get signal code from string like SIGHUP
 int
 get_sig(const char *sig_name);
 
-// print signal list
-void
-print_sig_list();
+// waitpid with WNOHANG and return the status
+int
+wait_proc(pid_t in, pid_t *out);
 
 // Open uri with the default application of system
 int

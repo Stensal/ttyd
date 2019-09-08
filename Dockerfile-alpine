@@ -1,14 +1,16 @@
-FROM alpine:3.6
-LABEL maintainer "Shuanglei Tao - tsl0922@gmail.com" \
-    maintainer "Damien Duportal - damien.duportal@gmail.com"
+FROM i386/alpine:3.6
 
 RUN apk add --update \
     bash \
-    ttyd \
   && rm -rf /var/cache/apk/*
 
 EXPOSE 7681
 
-ENTRYPOINT ["ttyd"]
+COPY run_in_cattlegrid.sh  /bin/run_in_cattlegrid.sh
+COPY cattlegrid  /bin/cattlegrid
+COPY prlimit     /bin/prlimit
+COPY ./cmake-build-debug/ttyd  /bin/ishell
+
+ENTRYPOINT ["ishell"]
 
 CMD ["bash"]
