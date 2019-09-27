@@ -8,7 +8,7 @@ shift
 /usr/bin/env \
     HOME=/home/jail \
     /bin/prlimit \
-    --core=0 --as=1073741824  --cpu=30 --data=134217728 --fsize=134217728 --nofile=256 --nproc=512 -- \
+    --core=0 --as=1073741824 --data=134217728 --fsize=134217728 --nofile=256 --nproc=512 -- \
     /bin/cattlegrid --rootdir=./jail \
     --mount=/ishell_bin,/lib \
     --rwmount=/tmp=/tmp,/home/jail=/ishell/workspace/wandbox/$cattlecell/store \
