@@ -20,6 +20,8 @@ RUN  mkdir /ishell_bin && \
      cp /bin/ls   /ishell_bin
 
 COPY run_prog.sh /ishell_bin/
+RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
+
 RUN  echo "stensal-anon:x:1000:1000:stensal-anonuser,,,:/home/jail:/bin/bash"  >> /etc/passwd
 
 ENTRYPOINT ["/bin/ishell"]
