@@ -16,4 +16,4 @@ DATA=$((128*1024*1024))
     /bin/cattlegrid --rootdir=./jail \
     --mount=/ishell_bin,/lib \
     --rwmount=/tmp=/tmp,/home/jail=/ishell/workspace/wandbox/$cattlecell/store \
-    --chdir=/home/jail /ishell_bin/sh
+    --chdir=/home/jail /ishell_bin/sh +m
