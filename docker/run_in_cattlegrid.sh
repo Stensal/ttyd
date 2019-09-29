@@ -7,8 +7,11 @@ shift
 AS=$((128*1024*1024))
 CPU=$((6*60*60))
 DATA=$((128*1024*1024))
+XUID=2000
 
-chown 1000:1000 -R /ishell/workspace/wandbox/$cattlecell/store
+find /ishell/workspace/wandbox/$cattlecell -type d -exec chmod 0770 {} \;
+find /ishell/workspace/wandbox/$cattlecell -type d -exec chown ${XUID}:0 -R {} \;
+
 /usr/bin/env \
     HOME=/home/jail \
     COMPILER_DISPLAY_NAME=stensal \
@@ -23,4 +26,4 @@ chown 1000:1000 -R /ishell/workspace/wandbox/$cattlecell/store
     /bin/cattlegrid --rootdir=./jail \
     --mount=/ishell_bin,/lib \
     --rwmount=/tmp=/tmp,/home/jail=/ishell/workspace/wandbox/$cattlecell/store \
-    --chdir=/home/jail --uid=1000 /ishell_bin/run_prog.sh $@
+    --chdir=/home/jail --uid=${XUID} /ishell_bin/run_prog.sh $@
