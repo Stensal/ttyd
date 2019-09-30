@@ -18,7 +18,8 @@ RUN  mkdir /ishell_bin && \
      cp /bin/sh   /ishell_bin && \
      cp /usr/bin/env /ishell_bin && \
      cp /bin/bash /ishell_bin && \
-     cp /bin/ls   /ishell_bin
+     cp /bin/ls   /ishell_bin && \
+     cp /usr/bin/clear /ishell_bin
 
 COPY run_prog.sh /ishell_bin/
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
