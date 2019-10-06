@@ -26,6 +26,7 @@ struct tty_server *server;
 static const struct lws_protocols protocols[] = {
         {"http-only", callback_http, sizeof(struct pss_http),   0},
         {"tty",       callback_tty,  sizeof(struct tty_client), 0},
+        {"ishell",    callback_tty,  sizeof(struct tty_client), 0},
         {NULL, NULL,                 0,                         0}
 };
 
