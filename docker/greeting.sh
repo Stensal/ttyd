@@ -1,0 +1,8 @@
+printf " The following shell commands are available.\n"
+printf " \t\e[1;32mls\e[0m -- list all files\n"
+printf " \t\e[1;32mclear\e[0m -- clear the console\n"
+printf " \t\e[1;32mexit\e[0m -- exit this console\n"
+echo ""
+printf " If you didn't supply your Makefile, the default executable for your code is:\n"
+printf " \t\e[1;32mprog.exe\e[0m\n"
+printf " Please run your executable to find out the cause of segfault.\n"

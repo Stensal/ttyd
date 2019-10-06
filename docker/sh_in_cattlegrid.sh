@@ -9,6 +9,7 @@ CPU=$((6*60*60))
 DATA=$((128*1024*1024))
 XUID=2000
 
+cp  /ishell_bin/greeting.sh   /ishell/workspace/wandbox/$cattlecell/store/.profile
 find /ishell/workspace/wandbox/$cattlecell -type d -exec chmod 0770 {} \;
 find /ishell/workspace/wandbox/$cattlecell -type d -exec chown ${XUID}:0 -R {} \;
 
@@ -26,6 +27,6 @@ find /ishell/workspace/wandbox/$cattlecell -type d -exec chown ${XUID}:0 -R {} \
     /bin/prlimit \
     --core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
     /bin/cattlegrid --rootdir=./user \
-    --mount=/ishell_bin,/lib \
+    --mount=/ishell_bin,/lib,/usr/lib \
     --rwmount=/tmp=/tmp,/home/user=/ishell/workspace/wandbox/$cattlecell/store \
-    --chdir=/home/user --uid=${XUID} /ishell_bin/sh +m
+    --chdir=/home/user --uid=${XUID} /ishell_bin/sh +m +l

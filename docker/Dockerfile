@@ -22,6 +22,8 @@ RUN  mkdir /ishell_bin && \
      cp /usr/bin/clear /ishell_bin
 
 COPY run_prog.sh /ishell_bin/
+COPY greeting.sh /ishell_bin/
+
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
 RUN adduser -s /ishell_bin/sh -h /home/jail -D -H tester -u 2000 -G root
 
