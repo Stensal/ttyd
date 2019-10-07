@@ -4,9 +4,9 @@ mypath=$(dirname $(readlink -f $0))
 cattlecell=$1
 shift
 
-AS=$((128*1024*1024))
-CPU=$((6*60*60))
-DATA=$((128*1024*1024))
+AS=$((32*1024*1024))
+CPU=$((1*60*60))
+DATA=$((32*1024*1024))
 XUID=2000
 
 cp  /ishell_bin/greeting.sh   /ishell/workspace/wandbox/$cattlecell/store/.profile
@@ -24,6 +24,7 @@ find /ishell/workspace/wandbox/$cattlecell -type d -exec chown ${XUID}:0 -R {} \
     DTS_MEMORY_UNINIT_CHECK=warning \
     DTS_COLORING_MSG=1 \
     DTS_STUDENT_MODE=1 \
+    /bin/nice \
     /bin/prlimit \
     --core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
     /bin/cattlegrid --rootdir=./user \
