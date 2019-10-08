@@ -4,9 +4,10 @@ mypath=$(dirname $(readlink -f $0))
 cattlecell=$1
 shift
 
-AS=$((32*1024*1024))
+MEM=$((1024*1024*1024))
+AS=$MEM
 CPU=$((1*60*60))
-DATA=$((32*1024*1024))
+DATA=$MEM
 XUID=2000
 
 cp  /ishell_bin/greeting.sh   /ishell/workspace/wandbox/$cattlecell/store/.profile
@@ -28,6 +29,6 @@ find /ishell/workspace/wandbox/$cattlecell -type d -exec chown ${XUID}:0 -R {} \
     /bin/prlimit \
     --core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
     /bin/cattlegrid --rootdir=./user \
-    --mount=/ishell_bin,/lib,/usr/lib \
+    --mount=/ishell_bin,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc \
     --rwmount=/tmp=/tmp,/home/user=/ishell/workspace/wandbox/$cattlecell/store \
     --chdir=/home/user --uid=${XUID} /ishell_bin/sh +m +l

@@ -4,9 +4,9 @@ mypath=$(dirname $(readlink -f $0))
 cattlecell=$1
 shift
 
-AS=$((32*1024*1024))
+AS=$((128*1024*1024))
 CPU=$((1*60*60))
-DATA=$((32*1024*1024))
+DATA=$((128*1024*1024))
 XUID=2000
 
 find /ishell/workspace/wandbox/$cattlecell -type d -exec chmod 0770 {} \;

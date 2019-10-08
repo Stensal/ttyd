@@ -1,8 +1,11 @@
-FROM alpine:3.6
+#FROM alpine:3.6
+FROM dockerhub.stensalinc.com/i386/stensal_release_sdk:latest
+LABEL Maintainer1="Ning <ning@stensalinc.com>"
 
-RUN apk add --update \
-    bash \
-  && rm -rf /var/cache/apk/*
+
+#RUN apk add --update \
+#    bash \
+#  && rm -rf /var/cache/apk/*
 
 EXPOSE 7681
 
@@ -28,4 +31,4 @@ COPY greeting.sh /ishell_bin/
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
 RUN adduser -s /ishell_bin/sh -h /home/jail -D -H tester -u 2000 -G root
 
-ENTRYPOINT ["/bin/ishell", "dummy"]
+ENTRYPOINT ["/bin/ishell"]
