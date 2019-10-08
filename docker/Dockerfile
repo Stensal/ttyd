@@ -2,6 +2,12 @@
 FROM dockerhub.stensalinc.com/i386/stensal_release_sdk:latest
 LABEL Maintainer1="Ning <ning@stensalinc.com>"
 
+RUN rm -rf /sjacket/etc/ld-musl-i386.path \
+    && rm -rf /sjacket/etc/abuild.conf \
+    && rm -rf /sjacket/etc/abuild.conf.orig \
+    && rm -rf /sjacket/etc/apk \
+    && rm -rf /sjacket/apk \
+    && rm -rf /sjacket/lib/apk
 
 #RUN apk add --update \
 #    bash \
