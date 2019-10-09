@@ -13,4 +13,8 @@ for i in *; do
 	printf "\t\e[1;32m./$i\e[0m\n"
     fi
 done
-
+printf "\n"
+printf " We don't want to set up a short timeout for this \n"
+printf " session, please use the console responsibly. \n"
+printf " Close your browser or exit this console whenever \n"
+printf " you are done.\n"
