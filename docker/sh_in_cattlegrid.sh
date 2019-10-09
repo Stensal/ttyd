@@ -29,6 +29,6 @@ find /ishell/workspace/wandbox/$cattlecell -type d -exec chown ${XUID}:0 -R {} \
     /bin/prlimit \
     --core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
     /bin/cattlegrid --rootdir=./user \
-    --mount=/ishell_bin,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc \
+    --mount=/ishell_bin,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
     --rwmount=/tmp=/tmp,/home/user=/ishell/workspace/wandbox/$cattlecell/store \
     --chdir=/home/user --uid=${XUID} /ishell_bin/sh +m +l
