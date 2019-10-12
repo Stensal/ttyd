@@ -172,6 +172,7 @@ cleanup:
 #define SH_CMD   "sh_in_cattlegrid.sh"
 #define EXE_CMD  "run_in_cattlegrid.sh"
 #define DEBUG_CMD "test.sh"
+#define GDB_CMD "gdb.sh"
 
 int
 handle_execution_command(struct tty_client *client) {
@@ -194,7 +195,7 @@ handle_execution_command(struct tty_client *client) {
         // }
         struct json_object* argv_obj = NULL;
         struct json_object* exec_path_obj = NULL;
-        int is_sh = 0, is_exe = 0, is_debug = 0;
+        int is_sh = 0, is_exe = 0, is_debug = 0, is_gdb = 0;
 
         if (json_object_object_get_ex(json_obj, "exec", &exec_path_obj))
             is_exe = 1;
@@ -202,8 +203,10 @@ handle_execution_command(struct tty_client *client) {
             is_sh = 1;
         else if (json_object_object_get_ex(json_obj, "debug", &exec_path_obj))
             is_debug = 1;
+        else if (json_object_object_get_ex(json_obj, "gdb", &exec_path_obj))
+            is_gdb = 1;
 
-        if (is_exe || is_sh || is_debug) {
+        if (is_exe || is_sh || is_debug || is_gdb) {
             char * path = json_object_get_string(exec_path_obj);
             if (is_exe)
                 client->exe_path_name = strdup(BIN_PATH_NAME "/" EXE_CMD);
@@ -211,6 +214,8 @@ handle_execution_command(struct tty_client *client) {
                 client->exe_path_name = strdup(BIN_PATH_NAME "/" SH_CMD);
             else if (is_debug)
                 client->exe_path_name = strdup(BIN_PATH_NAME "/" DEBUG_CMD);
+            else if (is_gdb)
+                client->exe_path_name = strdup(BIN_PATH_NAME "/" GDB_CMD);
 
             lwsl_notice("exe_path_name %s\n", client->exe_path_name);
 
@@ -229,6 +234,8 @@ handle_execution_command(struct tty_client *client) {
                 client->argv[0] = strdup(SH_CMD);
             else if (is_debug)
                 client->argv[0] = strdup(DEBUG_CMD);
+            else if (is_gdb)
+                client->argv[0] = strdup(GDB_CMD);
 
             lwsl_notice("cmd %s\n", client->argv[0]);
             client->argv[1] = strdup(path);
