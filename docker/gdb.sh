@@ -1,6 +1,10 @@
 #!/bin/bash -x
-echo "$@"
-echo "change directory to $1"
-cd $1
-pwd
-/usr/bin/gdb --interpreter=mi $2
+
+cattlecell=$1
+shift
+
+CELL=/ishell/workspace/wandbox/$cattlecell
+STORE=${CELL}/store
+
+cd ${STORE}
+/usr/bin/gdb $@

@@ -18,6 +18,7 @@ EXPOSE 7681
 
 COPY run_in_cattlegrid.sh  /bin/run_in_cattlegrid.sh
 COPY sh_in_cattlegrid.sh  /bin/sh_in_cattlegrid.sh
+COPY gdb.sh /bin/gdb.sh
 COPY cattlegrid  /bin/cattlegrid
 
 COPY prlimit     /bin/prlimit
