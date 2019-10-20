@@ -13,6 +13,7 @@ RUN rm -rf /sjacket/etc/ld-musl-i386.path \
 #    bash \
 #  && rm -rf /var/cache/apk/*
 
+
 EXPOSE 7681
 
 COPY run_in_cattlegrid.sh  /bin/run_in_cattlegrid.sh
@@ -34,6 +35,7 @@ RUN  mkdir /ishell_bin && \
 COPY run_prog.sh /ishell_bin/
 COPY greeting.sh /ishell_bin/
 COPY entrypoint.sh /bin/
+COPY t-gdbtest /t-gdbtest
 
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
 RUN adduser -s /ishell_bin/sh -h /home/jail -D -H tester -u 2000 -G root
