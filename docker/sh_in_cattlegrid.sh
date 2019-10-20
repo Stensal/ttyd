@@ -32,7 +32,7 @@ if [ -d ${STORE} ]; then
 	/bin/nice \
 	/bin/prlimit \
 	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
-	/bin/cattlegrid --rootdir=./user \
+	/bin/cattlegrid --rootdir=/home/user \
 	--mount=/ishell_bin,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
 	--rwmount=/tmp=/tmp,/home/user=${STORE} \
 	--chdir=/home/user --uid=${XUID} /ishell_bin/sh +m +l

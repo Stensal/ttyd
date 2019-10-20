@@ -1,11 +1,16 @@
 #!/bin/bash
 
-if [ -d /ishell/workspace/wandbox/t-gdbtest ]; then
-    rm -rf /ishell/workspace/wandbox/t-gdbtest
+GDBTEST=/ishell/workspace/wandbox/t-gdbtest
+
+if [ -d ${GDBTEST} ]; then
+    chmod 770 ${GDBTEST}
+    rm -rf ${GDBTEST}
 fi
 cp -a /t-gdbtest /ishell/workspace/wandbox
-cd /ishell/workspace/wandbox/t-gdbtest
+cd ${GDBTEST}/store
 ./build.sh
+find ${GDBTEST} -type d -exec chmod 0770 {} \;
+find ${GDBTEST} -type d -exec chown -R tester:0 {} \;
 # redirect stdout/stderr to files
 exec >>  /var/log/ishell-stdout.log
 exec 2>> /var/log/ishell-stderr.log

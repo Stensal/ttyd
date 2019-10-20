@@ -37,6 +37,7 @@ COPY greeting.sh /ishell_bin/
 COPY entrypoint.sh /bin/
 COPY t-gdbtest /t-gdbtest
 
+
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
 RUN adduser -s /ishell_bin/sh -h /home/jail -D -H tester -u 2000 -G root
 
