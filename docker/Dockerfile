@@ -23,6 +23,7 @@ COPY cattlegrid  /bin/cattlegrid
 
 COPY prlimit     /bin/prlimit
 COPY ttyd  /bin/ishell
+COPY dumb-init /bin/
 COPY start.sh /bin
 
 RUN  mkdir /ishell_bin && \
@@ -42,4 +43,4 @@ COPY t-gdbtest /t-gdbtest
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
 RUN adduser -s /ishell_bin/sh -h /home/jail -D -H tester -u 2000 -G root
 
-ENTRYPOINT ["/bin/entrypoint.sh"]
+ENTRYPOINT ["/bin/dumb-init", "--", "/bin/entrypoint.sh"]
