@@ -29,6 +29,7 @@ if [ -d ${STORE} ]; then
 	DTS_MEMORY_UNINIT_CHECK=warning \
 	DTS_COLORING_MSG=1 \
 	DTS_STUDENT_MODE=1 \
+	DTS_REPORT_UNRELEASED_MEMORY=1 \
 	/bin/nice \
 	/bin/prlimit \
 	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
