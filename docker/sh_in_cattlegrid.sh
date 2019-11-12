@@ -9,6 +9,7 @@ AS=$MEM
 CPU=$((1*60*60))
 DATA=$MEM
 XUID=2000
+NFILES=256
 
 CELL=/ishell/workspace/wandbox/$cattlecell
 STORE=${CELL}/store
@@ -32,7 +33,7 @@ if [ -d ${STORE} ]; then
 	DTS_REPORT_UNRELEASED_MEMORY=1 \
 	/bin/nice \
 	/bin/prlimit \
-	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
+	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=${NFILES} --nproc=64 -- \
 	/bin/cattlegrid --rootdir=/home/user \
 	--mount=/ishell_bin,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
 	--rwmount=/tmp=/tmp,/home/user=${STORE} \

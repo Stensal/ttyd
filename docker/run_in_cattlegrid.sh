@@ -8,6 +8,7 @@ AS=$((128*1024*1024))
 CPU=$((1*60*60))
 DATA=$((128*1024*1024))
 XUID=2000
+NFILES=256
 
 CELL=/ishell/workspace/wandbox/$cattlecell
 STORE=${CELL}/store
@@ -27,7 +28,7 @@ if [ -d ${STORE} ]; then
 	DTS_STUDENT_MODE=1 \
 	/bin/nice \
 	/bin/prlimit \
-	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=16 --nproc=64 -- \
+	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=${NFILES} --nproc=64 -- \
 	/bin/cattlegrid --rootdir=./user \
 	--mount=/ishell_bin,/lib \
 	--rwmount=/tmp=/tmp,/home/user=${STORE} \
