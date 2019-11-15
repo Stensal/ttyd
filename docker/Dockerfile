@@ -11,6 +11,11 @@ RUN rm -rf /sjacket/etc/ld-musl-i386.path \
     && rm -rf /sjacket/apk \
     && rm -rf /sjacket/lib/apk
 
+RUN rm /sjacket/stensal/bin/klaram.exe \
+    && rm /sjacket/stensal/bin/clang-3.5 \
+    && rm /sjacket/stensal/bin/stensal-nm \
+    && rm /sjacket/stensal/bin/license.json
+
 #RUN apk add --update \
 #    bash \
 #  && rm -rf /var/cache/apk/*
