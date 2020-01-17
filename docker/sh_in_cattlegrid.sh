@@ -16,8 +16,8 @@ STORE=${CELL}/store
 
 if [ -d ${STORE} ]; then
     cp  /ishell_bin/greeting.sh   ${STORE}/.profile
-    find ${CELL} -type d -exec chmod 0770 {} \;
-    find ${CELL} -type d -exec chown ${XUID}:0 -R {} \;
+    # make all folders accessible
+    find ${CELL} -type d -exec chmod 0777 {} \;
 
     /usr/bin/env \
 	PS1='$ ' \
