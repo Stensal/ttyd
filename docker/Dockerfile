@@ -44,7 +44,7 @@ RUN  mkdir /ishell_bin && \
 COPY run_prog.sh /ishell_bin/
 COPY greeting.sh /ishell_bin/
 COPY entrypoint.sh /bin/
-COPY t-gdbtest /t-gdbtest
+RUN chmod -R -w /ishell_bin/
 
 
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
