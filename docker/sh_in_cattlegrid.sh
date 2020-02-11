@@ -15,7 +15,9 @@ CELL=/ishell/workspace/wandbox/$cattlecell
 STORE=${CELL}/store
 
 if [ -d ${STORE} ]; then
-    cp  /ishell_bin/greeting.sh   ${STORE}/.profile
+    if [ ! -f ${STORE}/.profile ]; then
+        cp /ishell_bin/greeting.sh   ${STORE}/.profile
+    fi
     # make all folders accessible
     find ${CELL} -type d -exec chmod 0777 {} \;
 

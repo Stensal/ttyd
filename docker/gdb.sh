@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 cattlecell=$1
 shift
