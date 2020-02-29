@@ -3,7 +3,7 @@
 cattlecell=$1
 shift
 
-CELL=/ishell/workspace/wandbox/$cattlecell
+CELL=/ishell/workspace/sbox/$cattlecell
 STORE=${CELL}/store
 
 cd ${STORE}

@@ -1,12 +1,12 @@
 #!/bin/bash
 
-GDBTEST=/ishell/workspace/wandbox/t-gdbtest
+GDBTEST=/ishell/workspace/sbox/t-gdbtest
 
 if [ -d ${GDBTEST} ]; then
     chmod 770 ${GDBTEST}
     rm -rf ${GDBTEST}
 fi
-cp -a /t-gdbtest /ishell/workspace/wandbox
+cp -a /t-gdbtest /ishell/workspace/sbox
 cd ${GDBTEST}/store
 ./build.sh
 find ${GDBTEST} -type d -exec chmod 0770 {} \;

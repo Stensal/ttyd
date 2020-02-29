@@ -11,7 +11,7 @@ DATA=$MEM
 XUID=2000
 NFILES=256
 
-CELL=/ishell/workspace/wandbox/$cattlecell
+CELL=/ishell/workspace/sbox/$cattlecell
 STORE=${CELL}/store
 
 if [ -d ${STORE} ]; then
