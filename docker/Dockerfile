@@ -39,6 +39,7 @@ RUN  mkdir /ishell_bin && \
      cp /bin/bash /ishell_bin && \
      cp /bin/ls   /ishell_bin && \
      cp /bin/rm   /ishell_bin && \
+     cp /bin/mv   /ishell_bin && \
      cp /usr/bin/clear /ishell_bin && \
      cp /bin/more /ishell_bin
 
