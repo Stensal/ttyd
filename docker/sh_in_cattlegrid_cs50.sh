@@ -19,7 +19,7 @@ JAIL=${CELL}/jail
 if [ -d ${STORE} ]; then
     cd ${CELL};
     pwd;
-    cp /xshell/bin/greeting.sh   ${STORE}/.profile
+    cp /xshell/bin/greeting.sh   ${STORE}/.bashrc
     # make all folders accessible
     #find ${CELL} -type d -exec chmod 0777 {} \;
 
@@ -40,11 +40,11 @@ if [ -d ${STORE} ]; then
 	/bin/prlimit \
 	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=${NFILES} --nproc=64 -- \
 	/bin/cattlegrid --rootdir=./ebox \
-	--mount=/bin,/sbin,/usr/bin,/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo,/dev \
-	--rwmount=/etc/=/etc,/tmp=/tmp,/home/user=./store \
+	--mount=/etc,/bin,/sbin,/usr/bin,/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
+	--rwmount=/tmp=/tmp,/home/user=./store \
     --uid=${XUID} \
 	--chdir=/home/user \
-	/xshell/bin/bash 
+	/xshell/bin/bash
 else
     #--devices=/dev/null,/dev/zero,/dev/full,/dev/random,/dev/urandom \
     # possible attack
