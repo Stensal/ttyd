@@ -1,0 +1,63 @@
+FROM dockerhub.stensalinc.com/i386/cs50-baseline:latest
+LABEL Maintainer1="Ning <ning@stensalinc.com>"
+
+#RUN apk add --no-cache lsof
+RUN sudo apt-get install -y vim net-tools
+
+USER root
+RUN cp /usr/bin/nice /bin/nice
+
+RUN rm -rf /sjacket/etc/ld-musl-i386.path \
+    && rm -rf /sjacket/etc/abuild.conf \
+    && rm -rf /sjacket/etc/abuild.conf.orig \
+    && sudo rm -rf /sjacket/etc/apk \
+    && sudo rm -rf /sjacket/apk \
+    && sudo rm -rf /sjacket/lib/apk
+
+RUN rm -f /sjacket/stensal/bin/klaram.exe \
+    && rm -f /sjacket/stensal/bin/clang-3.5 \
+    && rm -f /sjacket/stensal/bin/stensal-nm \
+    && rm -f /sjacket/stensal/bin/license.json
+
+EXPOSE 7681
+
+COPY run_in_cattlegrid.sh  /bin/run_in_cattlegrid.sh
+COPY gdb.sh /bin/gdb.sh
+
+COPY prlimit     /bin/prlimit
+COPY ttyd  /bin/ishell
+COPY dumb-init /bin/
+COPY start.sh /bin
+COPY dummy /bin
+
+# All executables exposed to ishell
+# should be located in /xshell
+RUN  sudo mkdir -p /xshell/bin && \
+     sudo cp /bin/sh   /xshell/bin && \
+     sudo cp /usr/bin/env /xshell/bin && \
+     sudo cp /bin/bash /xshell/bin && \
+     sudo cp /bin/ls   /xshell/bin && \
+     sudo cp /bin/rm   /xshell/bin && \
+     sudo cp /bin/mv   /xshell/bin && \
+     sudo cp /usr/bin/clear /xshell/bin && \
+     sudo cp /bin/more /xshell/bin && \
+     sudo cp /usr/bin/git /xshell/bin && \
+     sudo cp /usr/bin/wget /xshell/bin
+
+COPY run_prog.sh /xshell/bin/
+COPY greeting.sh /xshell/bin/
+COPY resolv.sh /xshell/bin/
+COPY ck.sh /xshell/bin/
+COPY entrypoint.sh /bin/
+RUN sudo chmod -R -w /xshell/bin/
+
+
+RUN sudo chmod -w /xshell/bin /lib /usr/lib /usr/share
+RUN sudo groupadd -g 20000 tester
+RUN sudo useradd --shell /xshell/bin/sh --home-dir /home/jail tester -u 2000 -g tester
+
+
+COPY cattlegrid_cs50  /bin/cattlegrid
+COPY sh_in_cattlegrid_cs50.sh  /bin/sh_in_cattlegrid.sh
+
+ENTRYPOINT ["/bin/dumb-init", "--", "/bin/entrypoint.sh"]
