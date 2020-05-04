@@ -20,20 +20,34 @@ RUN rm -f /sjacket/stensal/bin/klaram.exe \
     && rm -f /sjacket/stensal/bin/stensal-nm \
     && rm -f /sjacket/stensal/bin/license.json
 
+RUN apt-get remove -y wget curl \
+    && rm /usr/bin/sudo \
+    && rm /usr/bin/scp
+
+RUN apt-get install -y libedit-dev \
+    && apt-get install -y autotools-dev \
+    && apt-get install -y automake
+    
+COPY dash-0.5.10.2.tar.gz /tmp
+RUN cd /tmp \
+    && tar -xf dash-0.5.10.2.tar.gz \
+    && cd dash-0.5.10.2 \
+    && ./autogen.sh \
+    && ./configure --with-libedit \
+    && make \
+    && make install
+
 EXPOSE 7681
 
-COPY run_in_cattlegrid.sh  /bin/run_in_cattlegrid.sh
-COPY gdb.sh /bin/gdb.sh
-
-COPY prlimit     /bin/prlimit
-COPY ttyd  /bin/ishell
-COPY dumb-init /bin/
-COPY start.sh /bin
+COPY prlimit    /bin/prlimit
+COPY ttyd       /bin/ishell
+COPY dumb-init  /bin/
+COPY start.sh   /bin
 
 # All executables exposed to ishell
 # should be located in /xshell
 RUN mkdir -p /xshell/bin \
-    && cp /bin/sh   /xshell/bin \
+    && cp /usr/local/bin/dash /xshell/bin \
     && cp /usr/bin/env /xshell/bin \
     && cp /bin/bash /xshell/bin \
     && cp /bin/ls   /xshell/bin \
@@ -45,6 +59,7 @@ RUN mkdir -p /xshell/bin \
 
 COPY run_prog.sh /xshell/bin/
 COPY greeting.sh /xshell/bin/
+COPY mybash.sh   /xshell/bin/
 COPY ck.sh /xshell/bin/
 COPY entrypoint.sh /bin/
 RUN chmod -R -w /xshell/bin/
@@ -54,9 +69,6 @@ RUN chmod -w /xshell/bin /lib /usr/lib /usr/share
 RUN groupadd -g 20000 tester
 RUN useradd --shell /xshell/bin/sh --home-dir /home/jail tester -u 2000 -g tester
 
-RUN apt-get remove -y wget curl \
-    && rm /usr/bin/sudo \
-    && rm /usr/bin/scp 
 
 COPY cattlegrid_cs50  /bin/cattlegrid
 COPY sh_in_cattlegrid_cs50.sh  /bin/sh_in_cattlegrid.sh

@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 mypath=$(dirname $(readlink -f $0))
 
 cattlecell=$1
@@ -18,10 +18,10 @@ JAIL=${CELL}/jail
 
 if [ -d ${STORE} ]; then
     cd ${CELL};
-    pwd;
     cp /xshell/bin/greeting.sh   ${STORE}/.bashrc
+    cp /xshell/bin/greeting.sh   ${STORE}/.profile
     # make all folders accessible
-    #find ${CELL} -type d -exec chmod 0777 {} \;
+    find ${CELL} -type d -exec chmod 0777 {} \;
 
     /usr/bin/env \
 	PS1='$ ' \
@@ -40,11 +40,11 @@ if [ -d ${STORE} ]; then
 	/bin/prlimit \
 	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=${NFILES} --nproc=64 -- \
 	/bin/cattlegrid --rootdir=./ebox \
-	--mount=/etc,/bin,/sbin,/usr/bin,/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
+	--mount=/etc,/bin,/sbin,/usr/bin,/usr/local/bin,/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
 	--rwmount=/tmp=/tmp,/home/user=./store \
-    --uid=${XUID} \
+	--uid=${XUID} --gid=${XGID} \
 	--chdir=/home/user \
-	/xshell/bin/bash
+	/xshell/bin/mybash.sh
 else
     #--devices=/dev/null,/dev/zero,/dev/full,/dev/random,/dev/urandom \
     # possible attack
