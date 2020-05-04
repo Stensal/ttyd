@@ -1,6 +1,6 @@
 export HISTFILE=~/.history
 export HISTSIZE=500
-export PATH=.:/xshell/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=.:/xshell/bin:/bin
 export PS1='$ '
 
 alias ls='ls --color'

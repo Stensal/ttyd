@@ -4,4 +4,4 @@
 exec >>  /var/log/ishell-stdout.log
 exec 2>> /var/log/ishell-stderr.log
 
-exec /bin/ishell $@
+exec /sbin/ishell $@

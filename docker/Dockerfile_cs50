@@ -39,10 +39,10 @@ RUN cd /tmp \
 
 EXPOSE 7681
 
-COPY prlimit    /bin/prlimit
-COPY ttyd       /bin/ishell
-COPY dumb-init  /bin/
-COPY start.sh   /bin
+COPY prlimit    /sbin/prlimit
+COPY ttyd       /sbin/ishell
+COPY dumb-init  /sbin/
+COPY start.sh   /sbin
 
 # All executables exposed to ishell
 # should be located in /xshell
@@ -55,14 +55,16 @@ RUN mkdir -p /xshell/bin \
     && cp /bin/mv   /xshell/bin \
     && cp /usr/bin/clear /xshell/bin \
     && cp /bin/more /xshell/bin \
-    && cp /usr/bin/git /xshell/bin 
+    && cp /usr/bin/git /xshell/bin \
+    && cp /usr/bin/id  /xshell/bin \
+    && cp /usr/bin/ssh  /xshell/bin
 
-COPY run_prog.sh /xshell/bin/
+COPY run_prog.sh /bin/
 COPY greeting.sh /xshell/bin/
 COPY mybash.sh   /xshell/bin/
 COPY ck.sh /xshell/bin/
-COPY entrypoint.sh /bin/
 RUN chmod -R -w /xshell/bin/
+RUN chmod -R -w /bin/
 
 
 RUN chmod -w /xshell/bin /lib /usr/lib /usr/share
@@ -70,7 +72,8 @@ RUN groupadd -g 20000 tester
 RUN useradd --shell /xshell/bin/sh --home-dir /home/jail tester -u 2000 -g tester
 
 
-COPY cattlegrid_cs50  /bin/cattlegrid
-COPY sh_in_cattlegrid_cs50.sh  /bin/sh_in_cattlegrid.sh
+COPY entrypoint.sh             /sbin/
+COPY cattlegrid_cs50           /sbin/cattlegrid
+COPY sh_in_cattlegrid_cs50.sh  /sbin/sh_in_cattlegrid.sh
 
-ENTRYPOINT ["/bin/dumb-init", "-c", "--", "/bin/entrypoint.sh"]
+ENTRYPOINT ["/sbin/dumb-init", "-c", "--", "/sbin/entrypoint.sh"]

@@ -168,7 +168,7 @@ cleanup:
     tty_client_remove(client);
 }
 
-#define BIN_PATH_NAME    "/bin"
+#define BIN_PATH_NAME    "/sbin"
 #define SH_CMD   "sh_in_cattlegrid.sh"
 #define EXE_CMD  "run_in_cattlegrid.sh"
 #define DEBUG_CMD "test.sh"

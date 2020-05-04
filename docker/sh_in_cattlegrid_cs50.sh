@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 mypath=$(dirname $(readlink -f $0))
 
 cattlecell=$1
@@ -37,10 +37,10 @@ if [ -d ${STORE} ]; then
 	DTS_STUDENT_MODE=1 \
 	DTS_REPORT_UNRELEASED_MEMORY=1 \
 	/bin/nice \
-	/bin/prlimit \
+	/sbin/prlimit \
 	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=${NFILES} --nproc=64 -- \
-	/bin/cattlegrid --rootdir=./ebox \
-	--mount=/etc,/bin,/sbin,/usr/bin,/usr/local/bin,/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
+	/sbin/cattlegrid --rootdir=./ebox \
+	--mount=/etc,/bin,/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
 	--rwmount=/tmp=/tmp,/home/user=./store \
 	--uid=${XUID} --gid=${XGID} \
 	--chdir=/home/user \

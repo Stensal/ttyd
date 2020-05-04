@@ -35,9 +35,9 @@ if [ -d ${STORE} ]; then
 	DTS_STUDENT_MODE=1 \
 	DTS_REPORT_UNRELEASED_MEMORY=1 \
 	/bin/nice \
-	/bin/prlimit \
+	/sbin/prlimit \
 	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=${NFILES} --nproc=64 -- \
-	/bin/cattlegrid --rootdir=/home/user \
+	/sbin/cattlegrid --rootdir=/home/user \
 	--mount=/ishell_bin,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
 	--rwmount=/tmp=/tmp,/home/user=${STORE} \
 	--chdir=/home/user --uid=${XUID} /ishell_bin/sh +m +l

@@ -23,15 +23,15 @@ RUN rm /sjacket/stensal/bin/klaram.exe \
 
 EXPOSE 7681
 
-COPY run_in_cattlegrid.sh  /bin/run_in_cattlegrid.sh
-COPY sh_in_cattlegrid.sh  /bin/sh_in_cattlegrid.sh
-COPY gdb.sh /bin/gdb.sh
-COPY cattlegrid  /bin/cattlegrid
+COPY run_in_cattlegrid.sh  /sbin/run_in_cattlegrid.sh
+COPY sh_in_cattlegrid.sh   /sbin/sh_in_cattlegrid.sh
+COPY gdb.sh                /sbin/gdb.sh
+COPY cattlegrid            /sbin/cattlegrid
 
-COPY prlimit     /bin/prlimit
-COPY ttyd  /bin/ishell
-COPY dumb-init /bin/
-COPY start.sh /bin
+COPY prlimit               /sbin/prlimit
+COPY ttyd                  /sbin/ishell
+COPY dumb-init             /sbin/
+COPY start.sh              /sbin
 
 RUN  mkdir /ishell_bin && \
      cp /bin/sh   /ishell_bin && \
@@ -45,11 +45,11 @@ RUN  mkdir /ishell_bin && \
 
 COPY run_prog.sh /ishell_bin/
 COPY greeting.sh /ishell_bin/
-COPY entrypoint.sh /bin/
+COPY entrypoint.sh /sbin/
 RUN chmod -R -w /ishell_bin/
-
+RUN chmod -R -w /bin
 
 RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
 RUN adduser -s /ishell_bin/sh -h /home/jail -D -H tester -u 2000 -G root
 
-ENTRYPOINT ["/bin/dumb-init", "--", "/bin/entrypoint.sh"]
+ENTRYPOINT ["/sbin/dumb-init", "--", "/sbin/entrypoint.sh"]

@@ -1,2 +1,2 @@
 #!/xshell/bin/bash
-/bin/bash -m -l -i
+/xshell/bin/bash -m -l -i
