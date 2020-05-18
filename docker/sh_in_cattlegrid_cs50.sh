@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 mypath=$(dirname $(readlink -f $0))
 
 cattlecell=$1
@@ -21,7 +21,7 @@ if [ -d ${STORE} ]; then
     cp /xshell/bin/greeting.sh   ${STORE}/.bashrc
     cp /xshell/bin/greeting.sh   ${STORE}/.profile
     # make all folders accessible
-    find ${CELL} -type d -exec chmod 0777 {} \;
+    find ${CELL} -type d -exec chmod 0555 {} \;
 
     /usr/bin/env \
 	PS1='$ ' \

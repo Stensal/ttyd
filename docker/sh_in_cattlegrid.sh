@@ -16,15 +16,15 @@ STORE=${CELL}/store
 
 if [ -d ${STORE} ]; then
     if [ ! -f ${STORE}/.profile ]; then
-        cp /ishell_bin/greeting.sh   ${STORE}/.profile
+        cp /xshell/bin/greeting.sh   ${STORE}/.profile
     fi
     # make all folders accessible
-    find ${CELL} -type d -exec chmod 0777 {} \;
+    find ${CELL} -type d -exec chmod 0555 {} \;
 
     /usr/bin/env \
 	PS1='$ ' \
 	HOME=/home/user \
-	PATH=.:/ishell_bin \
+	PATH=.:/xshell/bin \
 	COMPILER_DISPLAY_NAME=stensal \
 	COMPILER_CHECK_NAME=stensal \
 	KLARAM_REMOVE_SRCLOC_PREFIX=/home/user \
@@ -38,9 +38,9 @@ if [ -d ${STORE} ]; then
 	/sbin/prlimit \
 	--core=0 --as=${AS} --cpu=${CPU} --data=${DATA} --fsize=${DATA} --nofile=${NFILES} --nproc=64 -- \
 	/sbin/cattlegrid --rootdir=/home/user \
-	--mount=/ishell_bin,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
+	--mount=/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
 	--rwmount=/tmp=/tmp,/home/user=${STORE} \
-	--chdir=/home/user --uid=${XUID} /ishell_bin/sh +m +l
+	--chdir=/home/user --uid=${XUID} /xshell/bin/sh +m +l
 else
     # possible attack
     exit 1;

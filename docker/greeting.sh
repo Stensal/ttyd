@@ -6,8 +6,6 @@ export PS1='$ '
 alias ls='ls --color'
 umask 022
 
-set -o emacs
-
 printf " The following shell commands are available.\n"
 printf " \t\033[1;32mls\033[0m -- list all files\n"
 printf " \t\033[1;32mmv\033[0m -- move (rename) files\n"
@@ -18,7 +16,7 @@ printf " \t\033[1;32mCtrl-D\033[0m  -- terminate a running process or this conso
 echo ""
 printf " Please run one of the following executables to test your code:\n"
 for i in *; do
-    if [ -x $i ]; then
+    if [ -x $i ] && [ ! -d $i ]; then
 	printf "\t\033[1;32m./$i\033[0m\n"
     fi
 done
