@@ -19,7 +19,7 @@ if [ -d ${STORE} ]; then
         cp /xshell/bin/greeting.sh   ${STORE}/.profile
     fi
     # make all folders accessible
-    find ${CELL} -type d -exec chmod 0555 {} \;
+    find ${CELL} -type d -exec chmod 0777 {} \;
 
     /usr/bin/env \
 	PS1='$ ' \

@@ -33,23 +33,23 @@ COPY ttyd                  /sbin/ishell
 COPY dumb-init             /sbin/
 COPY start.sh              /sbin
 
-RUN  mkdir /ishell_bin && \
-     cp /bin/sh   /ishell_bin && \
-     cp /usr/bin/env /ishell_bin && \
-     cp /bin/bash /ishell_bin && \
-     cp /bin/ls   /ishell_bin && \
-     cp /bin/rm   /ishell_bin && \
-     cp /bin/mv   /ishell_bin && \
-     cp /usr/bin/clear /ishell_bin && \
-     cp /bin/more /ishell_bin
+RUN  mkdir -p /xshell/bin && \
+     cp /bin/sh   /xshell/bin && \
+     cp /usr/bin/env /xshell/bin && \
+     cp /bin/bash /xshell/bin && \
+     cp /bin/ls   /xshell/bin && \
+     cp /bin/rm   /xshell/bin && \
+     cp /bin/mv   /xshell/bin && \
+     cp /usr/bin/clear /xshell/bin && \
+     cp /bin/more /xshell/bin
 
-COPY run_prog.sh /ishell_bin/
-COPY greeting.sh /ishell_bin/
+COPY run_prog.sh /xshell/bin/
+COPY greeting.sh /xshell/bin/
 COPY entrypoint.sh /sbin/
-RUN chmod -R -w /ishell_bin/
+RUN chmod -R -w /xshell/bin/
 RUN chmod -R -w /bin
 
-RUN chmod -w /ishell_bin /lib /usr/lib /usr/local /usr/share
-RUN adduser -s /ishell_bin/sh -h /home/jail -D -H tester -u 2000 -G root
+RUN chmod -w /xshell/bin /lib /usr/lib /usr/local /usr/share
+RUN adduser -s /xshell/bin/sh -h /home/jail -D -H tester -u 2000 -G root
 
 ENTRYPOINT ["/sbin/dumb-init", "--", "/sbin/entrypoint.sh"]
