@@ -46,7 +46,7 @@ if [ -d ${STORE} ]; then
 	--chdir=/home/user \
 	/xshell/bin/mybash.sh
 else
-    #--devices=/dev/null,/dev/zero,/dev/full,/dev/random,/dev/urandom \
+	#--mount=/etc,/bin,/xshell,/lib,/usr/lib,/sjacket/lib,/sjacket/usr/lib,/sjacket/etc,/usr/share/terminfo \
     # possible attack
     exit 1;
 fi
