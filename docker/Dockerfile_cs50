@@ -37,6 +37,14 @@ RUN cd /tmp \
     && make \
     && make install
 
+RUN apt-get install -y apt-utils
+RUN apt-get install -y software-properties-common
+
+#RUN apt-get update \
+#    && add-apt-repository ppa:cs50/ppa \
+#    && apt-get update \
+#    && apt-get install -y astyle
+
 EXPOSE 7681
 
 COPY prlimit    /sbin/prlimit
@@ -60,7 +68,7 @@ RUN mkdir -p /xshell/bin \
     && cp /usr/bin/ssh  /xshell/bin
 
 COPY run_prog.sh /bin/
-COPY greeting_cs50.sh /xshell/bin/
+COPY greeting_cs50.sh /xshell/bin/greeting.sh
 COPY mybash.sh   /xshell/bin/
 COPY ck.sh /xshell/bin/
 RUN chmod -R -w /xshell/bin/
