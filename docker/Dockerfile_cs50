@@ -60,7 +60,7 @@ RUN mkdir -p /xshell/bin \
     && cp /usr/bin/ssh  /xshell/bin
 
 COPY run_prog.sh /bin/
-COPY greeting.sh /xshell/bin/
+COPY greeting_cs50.sh /xshell/bin/
 COPY mybash.sh   /xshell/bin/
 COPY ck.sh /xshell/bin/
 RUN chmod -R -w /xshell/bin/
