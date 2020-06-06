@@ -90,8 +90,13 @@ RUN mkdir -p /sbin \
     && mv /bin/dd /sbin \
     && mv /bin/dumb-init /sbin \
     && mv /bin/fuser /sbin \
+    && mv /bin/df /sbin \
     && mv /bin/dmesg /sbin \
-    && mv /bin/wdctl /sbin
+    && mv /bin/wdctl /sbin \
+    && mv /bin/su    /sbin \
+    && mv /bin/umount /sbin \
+    && mv /bin/mount  /sbin \
+    && mv /bin/ping   /sbin
     
 
 COPY run_prog.sh /bin/
