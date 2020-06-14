@@ -39,6 +39,7 @@ RUN cd /tmp \
 
 RUN apt-get install -y apt-utils
 RUN apt-get install -y software-properties-common
+RUN apt-get install -y libdwarf-dev libelf-dev
 
 #RUN apt-get update \
 #    && add-apt-repository ppa:cs50/ppa \
@@ -114,6 +115,10 @@ RUN chmod -w /xshell/bin /lib /usr/lib /usr/share
 RUN groupadd -g 20000 tester
 RUN useradd --shell /xshell/bin/sh --home-dir /home/jail tester -u 2000 -g tester
 
+#COPY PBD   /tmp/PBD
+#RUN cd /tmp/PBD/src \
+#    && make \
+#    && make install
 
 COPY entrypoint.sh             /sbin/
 COPY cattlegrid_cs50           /sbin/cattlegrid
