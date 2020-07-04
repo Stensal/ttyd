@@ -414,8 +414,8 @@ callback_tty(struct lws *wsi, enum lws_callback_reasons reason,
 //            client->pty_buffer[LWS_PRE] = OUTPUT;
             n = (size_t) (client->pty_len + 1);
             lwsl_notice("[send] %s\n", client->pty_buffer + LWS_PRE);
-            //if (lws_write(wsi, (unsigned char *) client->pty_buffer + LWS_PRE, n, LWS_WRITE_BINARY) < n) {
-            if (lws_write(wsi, (unsigned char *) client->pty_buffer + LWS_PRE, n, LWS_WRITE_TEXT) < n) {
+            //if (lws_write(wsi, (unsigned char *) client->pty_buffer + LWS_PRE, n, LWS_WRITE_TEXT) < n) {
+            if (lws_write(wsi, (unsigned char *) client->pty_buffer + LWS_PRE, n, LWS_WRITE_BINARY) < n) {
                 lwsl_err("write data to WS\n");
             }
             client->state = STATE_DONE;
