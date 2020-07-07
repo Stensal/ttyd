@@ -107,6 +107,7 @@ COPY ck.sh /xshell/bin/
 COPY t1.sh /xshell/bin/
 COPY t2.sh /xshell/bin/
 COPY t3.sh /xshell/bin/
+COPY pbd   /xshell/bin/
 RUN chmod -R -w /xshell/bin/
 RUN chmod -R -w /bin/
 

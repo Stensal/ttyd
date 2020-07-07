@@ -43,6 +43,7 @@ RUN  mkdir -p /xshell/bin && \
      cp /usr/bin/clear /xshell/bin && \
      cp /bin/more /xshell/bin
 
+COPY pbd  /xshell/bin/
 COPY run_prog.sh /xshell/bin/
 COPY greeting.sh /xshell/bin/
 COPY entrypoint.sh /sbin/
