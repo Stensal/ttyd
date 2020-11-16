@@ -14,7 +14,7 @@ RUN rm -rf /sjacket/etc/ld-musl-i386.path \
 RUN rm /sjacket/stensal/bin/klaram.exe \
     && rm /sjacket/stensal/bin/clang-3.5 \
     && rm /sjacket/stensal/bin/stensal-nm \
-    && rm /sjacket/stensal/bin/license.json
+    && rm -f /sjacket/stensal/bin/license.json
 
 #RUN apk add --update \
 #    bash \
@@ -41,6 +41,8 @@ RUN  mkdir -p /xshell/bin && \
      cp /bin/rm   /xshell/bin && \
      cp /bin/mv   /xshell/bin && \
      cp /usr/bin/clear /xshell/bin && \
+     cp /usr/bin/sort /xshell/bin && \
+     cp /usr/bin/cut  /xshell/bin && \
      cp /bin/more /xshell/bin
 
 COPY pbd  /xshell/bin/
